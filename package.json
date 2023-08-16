@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "heroku-postbuild": "ng build"
   },
   "private": true,
   "dependencies": {
@@ -22,8 +23,10 @@
     "@angular/router": "^14.0.0-next.0",
     "@microsoft/office-js": "^1.1.88",
     "@microsoft/office-js-helpers": "^1.0.2",
+    "express": "^4.18.2",
     "lodash-es": "^4.17.21",
     "ngx-sub-form": "^6.0.4",
+    "path": "^0.12.7",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
