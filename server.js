@@ -9,3 +9,4 @@ app.get('/*', function(req, res) {
 });
 
 app.listen(process.env.PORT || 4200);
+console.log(`el puerto del frontend es:${process.env.PORT}`)
