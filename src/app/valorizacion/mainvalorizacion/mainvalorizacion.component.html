@@ -1,0 +1,77 @@
+
+    <div class="apps">
+      
+        <!--cada app dentro del dashboard tiene que tener un modulo que lo representa-->
+        <div class="wrapper" *ngIf="habilitaPanelFotografico" > 
+            <div class="icon twitter">
+                 <div class="tooltip">           
+                    Panel.Fotográfico
+                 </div>
+                 <span><i class="app1" [ngStyle]="{
+                 'backgroundImage':urlPanelFotografico,
+                 'margin-top': '5px',
+                 'margin-left': '5px'
+                 }" (click)="panelFotografico()"  ></i></span>
+            </div>
+        </div>
+        
+        
+        <div class="wrapper" *ngIf="habilitaPeriodo"> 
+            <div class="icon twitter">
+                 <div class="tooltip">           
+                    Periodo
+                 </div>
+                 <span><i class="app1" [ngStyle]="{
+                 'backgroundImage':urlPeriodo,
+                 'margin-top': '5px',
+                 'margin-left': '5px'
+                 }" (click)="periodo()"  ></i></span>
+            </div>
+        </div>
+
+        
+
+        <div class="wrapper" *ngIf="habilitaDescargaConsolidado" > 
+            <div class="icon twitter">
+                 <div class="tooltip">           
+                    Descarga
+                 </div>
+                 <span><i class="app1" [ngStyle]="{
+                 'backgroundImage':urlDescargaConsolidado,
+                 'margin-top': '5px',
+                 'margin-left': '5px'
+                 }" (click)="comprimeCarpeta()"  ></i></span>
+            </div>
+        </div>
+
+        <div class="wrapper" *ngIf="habilitaIndiceSeparador" > 
+            <div class="icon twitter">
+                 <div class="tooltip">           
+                    Indice
+                 </div>
+                 <span><i class="app1" [ngStyle]="{
+                 'backgroundImage':urlindiceSeparador,
+                 'margin-top': '5px',
+                 'margin-left': '5px'
+                 }" (click)="indiceSeparador()"  ></i></span>
+            </div>
+        </div>
+
+    </div>
+
+<!--
+    - en plantillas que tienen un componente  si funcionan los imputs e outputs
+    siendo el hijo app-periodo y el padre mainvalorizacion
+    - Las plantillas que no tienen nada en su interior, indican que al momento de ser llamados por el padre
+    se especifica el nombre del componente que será renderizado en esta parte. En éste de llamadas si funciona correctamente 
+    el script de cerrado del dialogo. a diferencia de las rutas en donde no funciona el cerrado del dialogo. 
+
+-->
+<ng-template #seleccionaPeriodoDialogTemplate>
+   <!-- <app-periodo></app-periodo> no descomentar, es solo para recordar que se puede usar el input y output-->
+</ng-template>
+
+
+<ng-template #panelFotograficoDialogTemplate>
+    <app-listafotografias></app-listafotografias>
+</ng-template>

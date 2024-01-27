@@ -1,0 +1,17 @@
+/*.seccion{
+    width: 100%;
+    height: 100%;
+}*/
+/*permite crear un scrollbar de altura 250px en la seccion donde se encuentre el id="cuerpo*/
+/*#cuerpo{
+    
+    height: 250px;
+    overflow-y: scroll;
+}*/
+/*permite ocultar el scrollbar, pero manteniendo configurado lo anterior*/
+/*#cuerpo::-webkit-scrollbar{
+    display: none;
+}*/
+p{
+    font-size: 12px;
+}

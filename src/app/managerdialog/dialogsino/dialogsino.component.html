@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+<!--el contenido que se renderizará en la plantilla-->
+<mat-dialog-content>
+  <ng-container [ngTemplateOutlet]="data.dialogContent"> </ng-container>
+</mat-dialog-content>
+<!--
+  se pueden agregar configuracion de angular material a los botones, pero en este caso combiene que cada componente que 
+  se referencia sea independiente del cuadro de dialogo
+-->
+<mat-dialog-actions>
+  <button  *ngIf="data.declineButtonTitle" mat-button [mat-dialog-close]="data" (click)="onNoClick()">
+    {{ data.declineButtonTitle }}
+  </button>
+  <button  mat-button [mat-dialog-close]="data" cdkFocusInitial>
+    {{ data.acceptButtonTitle }}
+  </button>
+</mat-dialog-actions>
+
+

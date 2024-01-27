@@ -1,0 +1,80 @@
+<!--vista de evidencia fotografica desde la bd-->
+<div class="container__cards">
+    <div class="card" *ngFor="let periodo of (periodos); let i = index">
+      <p>Partida: {{periodo.partida}}</p>
+      <div class="cover__card" >
+          <img [src]="periodo.urlFoto" class="img-fluid" alt="">
+      </div>
+      <h2>Foto: {{i+1}}</h2>
+      <p>Descripción: {{periodo.descripcionTrabajos}}</p>
+      
+  </div>
+   
+</div>
+<!--fin-->
+
+<!--boton que abre el formulario de agregar la evidencia fotografica-->
+<div class="iphonex">
+    <div class="apps">            
+        <div class="app1" [ngStyle]="{'backgroundImage':url}" (click)="openYesNoDialog()"></div>
+    </div>
+</div>
+<!--fin-->
+
+<!--el contenido del dialog que muestra el formulario de ingreso de informacion para los campos partida y descripcion y foto-->
+<ng-template  #yesNoTemplatePanelForografico >
+   <div class="centrado" [formGroup]="form.formGroup">
+    <mat-form-field>
+        <input
+          matInput
+          data-input-crew-member-first-name
+          type="text"
+          placeholder="Partida"
+          [formControlName]="form.formControlNames.partida"
+          autocomplete="off"
+        />
+      </mat-form-field>
+      <mat-form-field [style.fontSize]="'12px'" appearance="fill">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput
+                  cdkTextareaAutosize
+                  #autosize="cdkTextareaAutosize"
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="5"
+                  [formControlName]="form.formControlNames.descripcionTrabajos"
+                  ></textarea>
+      </mat-form-field>
+      <input  type="file" class="d-none" (change)="onPhotoSelected($event)" #photoInput >
+                <img mat-card-image [src]="photoSelected || '/assets/imagen.png'" class="img-fluid" alt="No image" width="200px" height="200px"
+                (click)="photoInput.click()" >
+   </div>
+</ng-template>
+<!--fin-->
+
+<ng-template  #yesNoTemplateUpdatePanelForografico>
+    <div class="centrado" [formGroup]="form.formGroup">
+     <mat-form-field>
+         <input
+           matInput
+           data-input-crew-member-first-name
+           type="text"
+           placeholder="Partida"
+           [formControlName]="form.formControlNames.partida"
+           autocomplete="off"
+         />
+       </mat-form-field>
+       <mat-form-field [style.fontSize]="'12px'" appearance="fill">
+         <mat-label>Descripción</mat-label>
+         <textarea matInput
+                   cdkTextareaAutosize
+                   #autosize="cdkTextareaAutosize"
+                   cdkAutosizeMinRows="1"
+                   cdkAutosizeMaxRows="5"
+                   [formControlName]="form.formControlNames.descripcionTrabajos"
+                   ></textarea>
+       </mat-form-field>
+       <input  type="file" class="d-none" (change)="onPhotoSelected1($event)" #photoInput >
+                 <img mat-card-image [src]="photoSelected1 || '/assets/imagen.png'" class="img-fluid" alt="No image" width="200px" height="200px"
+                 (click)="photoInput.click()">
+    </div>
+ </ng-template>

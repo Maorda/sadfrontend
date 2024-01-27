@@ -1,0 +1,57 @@
+<section [formGroup]="form.formGroup" >
+    <mat-card id="card" style="text-align: center; padding: 30px;">
+        <mat-card-title>
+            Información Adicional
+        </mat-card-title>
+    
+        <mat-card-content>
+
+            
+            <mat-form-field>
+                <input matInput placeholder="Alias" [formControlName]="form.formControlNames.alias" autocomplete="off" >
+            </mat-form-field>
+    
+            
+
+            <mat-form-field appearance="fill">
+                <mat-label>Tipología</mat-label>
+                <mat-select [formControlName]="form.formControlNames.tipologia">
+                  <mat-option value="saneamiento">Saneamiento</mat-option>
+                  <mat-option value="colegio">Colegio</mat-option>
+                  <mat-option value="carretera">Carretera</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <div class="centrado">
+              <p>Seleccione Una Imagen Para la Cabecera de sus Valorizaciones</p>
+              <input  type="file" class="d-none" (change)="onChange($event)" #photoInput >
+                        <img mat-card-image [src]="photoSelected || '/assets/imagen.png'" class="img-fluid" alt="No image" width="150px" height="150px"
+                        (click)="photoInput.click()" >
+                        
+              </div>
+    </mat-card-content>
+    <mat-card-actions>
+
+        <button mat-stroked-button color="primary" (click)="creaObra()">Registrar</button>
+      </mat-card-actions>
+    </mat-card>
+    
+</section>
+
+<!--observacion: Todo lo que está dentro de ng-template se nuestra en el dialogo, asi como tambien el boton de cierre-->
+<ng-template #yesNoTemplateValorizacion>
+    <section>
+        <mat-divider></mat-divider>
+        <br>
+        <p>Éste archivo excel ahora es compatible con el S.A.D.</p>
+        <p>Asegurese siempre de guardar su información.</p>
+        <p>El S.A.D NO recupera ninguna información.</p>
+        <!--
+        <mat-checkbox   [checked]="true" [disabled]="true"></mat-checkbox>
+        <mat-checkbox   [checked]="true" [disabled]="true"></mat-checkbox>
+        <mat-checkbox   [checked]="true" [disabled]="true"></mat-checkbox>
+        -->
+        <mat-divider></mat-divider>
+    </section>
+       
+</ng-template>

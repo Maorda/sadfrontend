@@ -1,0 +1,22 @@
+<section class="encabezado">
+    <p>{{data.title}}</p>
+</section>
+
+<section id="cuerpo" class="seccion">
+    
+    <ng-container [ngTemplateOutlet]="data.dialogContent"> </ng-container>
+
+
+</section>
+    
+<!--
+    se pueden agregar configuracion de coloers a los botones.
+    mat-stroked-button color="primary"
+-->
+<button  *ngIf="data.declineButtonTitle" mat-button  (click)="dismissBottomSheet()">
+    {{ data.declineButtonTitle }}
+</button>
+
+<button  mat-button (click)="closeBottomSheet()" >
+    {{ data.acceptButtonTitle }}
+</button>

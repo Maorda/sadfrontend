@@ -1,0 +1,40 @@
+<section [formGroup]="form.formGroup">
+    <h2 mat-dialog-title>{{ data.title }}</h2>
+    <mat-radio-group 
+      aria-label="Select an option"
+      class="example-radio-group"
+      [formControlName]="form.formControlNames.valo"
+      [(ngModel)]="selectValorizacion"
+    >
+      <mat-radio-button 
+        class="example-radio-button"  
+        *ngFor="let valorizacion of (valorizaciones$ | async); let i = index"
+        [value]="{'rangoValorizacion':valorizacion.rangoValorizacion,'nroValorizacion':i,'mesValorizacion':valorizacion.mesValorizacion}"
+        >{{valorizacion.mesValorizacion}}
+      </mat-radio-button>
+  </mat-radio-group>
+    <mat-dialog-content class="centrado">
+      
+      <ng-container class="algo" [ngTemplateOutlet]="data.dialogContent"  > </ng-container>
+      Los Calculos se harán en el periodo seleccionado 
+
+    </mat-dialog-content>
+  <!--
+    se pueden agregar configuracion de angular material a los botones, pero en este caso combiene que cada componente que 
+    se referencia sea independiente del cuadro de dialogo
+  -->
+    <mat-dialog-actions>
+      <button  *ngIf="data.declineButtonTitle" mat-button mat-dialog-close (click)="onNoClick()">
+        {{ data.declineButtonTitle }}
+      </button>
+      <!--
+        cuando el cliente hace clik en ok
+      -->
+      <button  mat-button [mat-dialog-close]="data" cdkFocusInitial (click)="bien()">
+      {{ data.acceptButtonTitle }}
+      </button>
+    </mat-dialog-actions>
+  
+  
+  </section>
+  

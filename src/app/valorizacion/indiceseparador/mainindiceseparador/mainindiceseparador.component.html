@@ -1,0 +1,28 @@
+<section >
+    <h2 mat-dialog-title>{{ data.title }}</h2>
+    
+    <mat-dialog-content class="centrado">
+      
+      <ng-container class="algo" [ngTemplateOutlet]="data.dialogContent"  > </ng-container>
+      <section>
+        Se creará la siguiente hoja: 
+          <mat-checkbox  [checked]="true" [disabled]="true">Indice Valorización</mat-checkbox>
+      </section>
+      Porfavor se requiere que rellene la Hoja creada. 
+
+    </mat-dialog-content>
+  <!--
+    se pueden agregar configuracion de angular material a los botones, pero en este caso combiene que cada componente que 
+    se referencia sea independiente del cuadro de dialogo
+  -->
+    <mat-dialog-actions>
+      <button  *ngIf="data.declineButtonTitle" mat-button mat-dialog-close (click)="onNoClick()">
+        {{ data.declineButtonTitle }}
+      </button>
+      <button  mat-button [mat-dialog-close]="true" cdkFocusInitial >
+      {{ data.acceptButtonTitle }}
+      </button>
+    </mat-dialog-actions>
+  
+  
+  </section>

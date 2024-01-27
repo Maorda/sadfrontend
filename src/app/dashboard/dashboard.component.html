@@ -1,0 +1,83 @@
+<div class="iphonex">
+    <div class="apps">
+      <div class="mybody" >
+        <div class="logout" (click)="logout()">
+      
+        </div>
+      </div>
+
+        <!--cada app dentro del dashboard tiene que tener un modulo que lo representa-->
+        <div class="wrapper" *ngIf="habilitaconfiguracionObra"> 
+            <div class="icon twitter">
+                <!--click para cargar las hojas de configuracion del sistema,esto sucede cuando el archivo es nuevo--> 
+                <div class="tooltip">           
+                    Información Obra
+                 </div>
+                 <span><i class="app2" [ngStyle]="{
+                 'backgroundImage':urlObra,
+                 'margin-top': '5px',
+                 'margin-left': '5px'
+                 }" (click)="configuracionObra()"  ></i></span>
+            </div>
+        </div>
+        
+        <div class="wrapper" *ngIf="habilitaMetaDiaria" > 
+            <div class="icon twitter">
+                 <div class="tooltip">           
+                    Metas Diarias
+                 </div>
+                 <span><i class="app2" [ngStyle]="{
+                 'backgroundImage':urlPlanificacion,
+                 'margin-top': '5px',
+                 'margin-left': '5px'
+                 }" (click)="metadiaria()"  ></i></span>
+            </div>
+        </div>
+
+        
+
+        
+
+        <div class="wrapper" *ngIf="habilitaValorizacion" > 
+            <div class="icon twitter">
+                 <div class="tooltip">           
+                    Valorización
+                 </div>
+                 <span><i class="app2" [ngStyle]="{
+                 'backgroundImage':urlValorizacion,
+                 'margin-top': '5px',
+                 'margin-left': '5px'
+                 }" (click)="valorizacion()"  ></i></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<ng-template  #panelfotograficoDialogTemplate | #usuarioDialogTemplate >   
+    <!-- en cada template iran las aplicaciones que se definen con # -->
+    <router-outlet ></router-outlet> 
+    <!-- <app-mainobra (hijo)="hijo($event)"></app-mainobra>-->
+    
+</ng-template>
+
+<ng-template #metadiariaDialogTemplate>
+    <section>
+        <p>Se creará la Hoja Planifica Obra.</p>
+    </section>
+</ng-template>
+
+ 
+<ng-template #valorizacionDialogTemplate>
+    <app-mainvalorizacion></app-mainvalorizacion>
+</ng-template>
+
+<!--cargará esta plantilla en caso el archivo es nuevo-->
+<ng-template #configuracionObraDialogTemplate>
+    <!--es el hijo , que necesita disparar las activaciones de las opciones-->
+
+    <app-mainobra (valueResponse)="recibiRespuesta($event)"></app-mainobra>
+
+</ng-template>
