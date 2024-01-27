@@ -8,11 +8,13 @@ import { mergeMap, Subscription } from 'rxjs';
 import { ErrorService } from '../services/error.service';
 import { UserService } from '../services/user.service';
 import { registerForm } from '../interfaces/user.interface';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
+  changeDetection:ChangeDetectionStrategy.OnPush,
+  providers:subformComponentProviders(RegisterComponent)
 })
 export class RegisterComponent  {
   subscription: Subscription
@@ -21,6 +23,7 @@ export class RegisterComponent  {
 
   constructor(
     private readonly usuarioService:UserService,
+    private toastr: ToastrService,
     
     private _userService: UserService,
     private router: Router,
@@ -31,9 +34,7 @@ export class RegisterComponent  {
   public form = createForm<registerForm>(this,{
     formType:FormType.SUB,
     formControls:{
-      nombres:new UntypedFormControl(),
-      apellidos:new UntypedFormControl(),
-      email:new UntypedFormControl(null),
+      email: new UntypedFormControl,
       password: new UntypedFormControl(null)
     }
   })
@@ -42,13 +43,10 @@ export class RegisterComponent  {
      // Validamos que el usuario ingrese valores
      if (
       this.form.formGroup.value.email == null ||
-      this.form.formGroup.value.password == null ||
-      this.form.formGroup.value.nombres == null ||
-      this.form.formGroup.value.apellidos == null
+      this.form.formGroup.value.password == null
       ){
       
-      
-        //this.toastr.error('Todos los campos son obligatorios', 'Error');
+        this.toastr.error('Todos los campos son obligatorios', 'Error');
       return;
     }
 
@@ -57,8 +55,6 @@ export class RegisterComponent  {
     const user: registerForm = {
       email: this.form.formGroup.value.email,
       password: this.form.formGroup.value.password,
-      apellidos:this.form.formGroup.value.apellidos,
-      nombres:this.form.formGroup.value.nombres
     }
     
 
@@ -67,23 +63,18 @@ export class RegisterComponent  {
       next: (v) => {//respuesta del servidor
         
         this.loading = false;
-        //this.toastr.success(`El usuario ${this.form.formGroup.value.nombres} fue registrado con exito`, 'Usuario registrado');
+        this.toastr.success(`El usuario ${this.form.formGroup.value.email} fue registrado con exito`, 'Usuario registrado');
         this.router.navigate(['autenticar/login']);
       },
       error: (e: HttpErrorResponse) => {
         this.loading = false;
         this._errorService.msjError(e);
+        this.toastr.error(e.error.message);
       }
     })
   }
   atraz(){
     this.router.navigate(['autenticar/login'])
   }
-
-   
-  
-  
-  
-
 
 }

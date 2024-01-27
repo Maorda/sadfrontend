@@ -23,8 +23,10 @@
     "@microsoft/office-js": "^1.1.88",
     "@microsoft/office-js-helpers": "^1.0.2",
     "express": "^4.18.2",
+    "file-saver": "^2.0.5",
     "lodash-es": "^4.17.21",
     "ngx-cookie-service": "^14.0.1",
+    "ngx-filesaver": "^14.0.0",
     "ngx-sub-form": "^6.0.4",
     "ngx-toastr": "^15.0.0",
     "path": "^0.12.7",
@@ -37,12 +39,17 @@
     "@angular/cli": "~14.2.0",
     "@angular/compiler-cli": "^14.0.0-next.0",
     "@types/jasmine": "~4.0.0",
+    "@types/office-js": "^1.0.361",
+    "@types/office-runtime": "^1.0.35",
     "jasmine-core": "~4.3.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
+    "office-addin-debugging": "^5.0.14",
+    "office-addin-dev-certs": "^1.12.0",
+    "office-toolbox": "^0.3.0",
     "typescript": "~4.7.2"
   }
 }

@@ -4,7 +4,8 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpErrorResponse
+  HttpErrorResponse,
+  HttpHeaders
 } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { ErrorService } from '../services/error.service';
@@ -22,27 +23,30 @@ export class AddTokenInterceptor implements HttpInterceptor {
     
     ) {}
 
-    intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<unknown>> {
       const token = localStorage.getItem('token')
       
-      
-      if(token) {
-        request = request.clone({ setHeaders: { Authorization: `Bearer ${token}` } })
-        console.log(request)
-        //this.router.navigate(['dashboard'])
-        //const expiry = Buffer.from(token.split('.')[1],'utf8')
-       // console.log({"request":request,"token":token})
-      }
-      
+  
+        
+        const authReq = request.clone({
+          headers: request.headers.set('authorization', `${token}`)
+        });
     
-        return next.handle(request).pipe(
-          catchError((error: HttpErrorResponse) => {
-            if(error.status === 401){
-              this._errorService.msjError(error)
-              //this.router.navigate(['autenticar/usuario/login'])
-            }
-            return throwError(() => error);
+        // send cloned request with header to the next handler.
+        return next.handle(authReq);
+
+        /*const authReq = request.clone({
+          headers: new HttpHeaders({
+            'Content-Type':  'application/json',
+            'Authorization': token
           })
-        );
+        });
+      
+        console.log('Intercepted HTTP call', authReq);*/
+      
+        
+    
+
+
       }
 }

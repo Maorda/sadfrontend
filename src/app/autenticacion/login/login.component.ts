@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 import { ErrorService } from '../services/error.service';
 import { UserService } from '../services/user.service';
 import { User, loginForm } from '../interfaces/user.interface';
-
+import { ToastrService } from 'ngx-toastr';
 export interface confMsg{
   title:string;
   typeMsg:string;
@@ -17,7 +17,9 @@ export interface confMsg{
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  changeDetection:ChangeDetectionStrategy.OnPush,
+  providers:subformComponentProviders(LoginComponent)
 })
 export class LoginComponent {
 
@@ -30,7 +32,7 @@ export class LoginComponent {
 
   
   constructor(
-    
+    private toastr: ToastrService,
     private _userService: UserService,
     private router: Router,
     private _errorService: ErrorService,
@@ -51,7 +53,7 @@ export class LoginComponent {
   login(){
      // Validamos que el usuario ingrese datos
      if (this.form.formGroup.value.email == null || this.form.formGroup.value.password == null) {
-      
+      this.toastr.error('Todos los campos son obligatorios', 'Error');
       
 
       return
@@ -66,12 +68,12 @@ export class LoginComponent {
     this.loading = true;
     this.subscription = this._userService.login(usuario).subscribe({
       next: (payload:any) => {//respuesta del servidor
-        console.log(payload.token)
         localStorage.setItem('token', payload.token);
         this.router.navigate(['dashboard/main'])
       },
       error: (e: HttpErrorResponse) => {
-        console.log(e.error.message)
+        
+        this.toastr.error(traductor(e.error.message), 'Error');
         return
       },
       complete() {
@@ -89,4 +91,14 @@ export class LoginComponent {
   }
  
   
+}
+
+function traductor(e:string):string{
+
+  const configuracion:any = {
+      USER_NOT_FOUND:"Usuario no Registrado"
+
+  }
+  return configuracion[e]
+
 }

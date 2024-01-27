@@ -1,6 +1,4 @@
-export interface User {
-    nombres: string,
-    apellidos: string
+export interface User{
     email: string,
     password: string,
 }
@@ -10,8 +8,6 @@ export interface loginForm {
 }
 
 export interface registerForm {
-    nombres: string | undefined,
-    apellidos: string | undefined;
     email: string | undefined,
     password: string | undefined,
 }

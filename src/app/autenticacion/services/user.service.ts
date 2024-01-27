@@ -8,22 +8,23 @@ import { loginForm, registerForm } from '../interfaces/user.interface';
 })
 export class UserService {
 
-  private myAppUrl: string;
-  private myApiUrl: string;
-  private myApiRegister: string;
+  private ApiUrlBase: string;
+  private ApiUrlLogin: string;
+  private ApiUrlRegister: string;
 
   constructor(private http: HttpClient) {
-    this.myAppUrl = restendpoint.base;
-    this.myApiUrl = restendpoint.usuario.login;
-    this.myApiRegister = restendpoint.usuario.register
+    this.ApiUrlBase = restendpoint.base;
+    this.ApiUrlLogin = restendpoint.usuario.login;
+    this.ApiUrlRegister = restendpoint.usuario.register
    }
 
    signIn(user: registerForm): Observable<any> {
-    return this.http.post(`${this.myAppUrl}${this.myApiRegister}`, user);
+    return this.http.post(`${this.ApiUrlBase}${this.ApiUrlRegister}`, user);
    }
 
    login(user: loginForm): Observable<any> {
+    //https://192.168.1.86:3033/usuario/login
     
-    return this.http.post(`${this.myAppUrl}${this.myApiUrl}`, user)
+    return this.http.post(`${this.ApiUrlBase}${this.ApiUrlLogin}`, user)
    }
 }

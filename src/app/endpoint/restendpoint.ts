@@ -3,23 +3,28 @@ export const restendpoint = {
     usuario:{
         lista:'usuario/lista',
         login:'auth/login',
-        register:'auth/register'
+        register:'auth/register',
+        buscaObraSegunUsuario:'auth'
     },
     obra:{
         crea:'obra/crea',
-        descargarplantilla:'obra/descargaplantilla',
+        descargarplantilla:'obra/plantilla/descargaplantilla',
         listbyuser:'obra/listbyuser',
         buscaobrabyId:'obra/buscaobrabyId'
     },
     valorizacion:{
-        
+        creaPeriodoValorizacion:"valorizacion/creaperiodovalorizacion",
+        agregaevidenciafotografica:"valorizacion/agregaevidenciafotografica",
         lista:'valorizacion/lista',
-        listabyobraid:'valorizacion/listabyobraid',
+        listaValorizacionByobraid:'valorizacion/listaValorizacionByobraid',
         generavalorizacionxls:'valorizacion/generavalorizacionxls',
         generacalculovalorizacion:'valorizacion/generacalculovalorizacion',
         generaseparadoresconindice:'valorizacion/generaseparadoresconindice',
         descargaseparadores:'valorizacion/descargaseparadores',
-        descargaconsolidado:'valorizacion/descargaconsolidado'
+        descargaconsolidado:'valorizacion/descargaconsolidado',
+        consultas:'valorizacion/consultas',
+        actualizaevidenciafotografica:'valorizacion/actualizaevidenciafotografica',
+        comprimecarpeta:'valorizacion/comprimecarpeta'
         
     },
     panelfotografico:{

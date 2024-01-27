@@ -11,6 +11,7 @@ import {MatCardModule} from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
+
 @NgModule({
   declarations: [
     BaseComponent,
@@ -27,6 +28,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     ReactiveFormsModule,
     FormsModule,
     MatFormFieldModule,
+    
   ]
 })
 export class AutenticacionModule { }
